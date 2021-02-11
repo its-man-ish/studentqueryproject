@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block style %}
+<style>
+    .success{
+        color: red;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2 class="text-center">Student registration form</21>
+    </div>
+    <div class="card-body">
+      
+<form action="" novalidate method="post" novalidate>
+    {% csrf_token %}
+    {{form|crispy}}
+    <input type="submit" class="btn btn-primary" value="Register">
+    <a href="{% url 'login'  %}" class="btn btn-success">Login</a>
+</form>
+
+{% if messages %}
+{% for message in messages %}
+  
+    <div class="success text-center">{{message}}</div>
+    <a href="{% url 'login'  %}" class="btn btn-success">Login</a>
+
+{% endfor %}   
+{% endif %}
+    </div>
+</div>
+
+{% endblock %}

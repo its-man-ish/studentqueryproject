@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">STUDENT QUERRY FORM</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-primary" value="SUBMIT QUERRY">
+        <a href="{% url 'index'  %}" class="btn btn-warning ">Home</a>
+
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <h3 class="success text-center">{{message}}</h3>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="conatiner">
+    <div class="card-header text-center">
+        <h3>Login Form</h3>
+        <p>Admin: naruto <br> Passward: manish</p>
+    </div>
+   <div class="card-body">
+       {% if messages %}
+       {% for message in messages %}
+
+       <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+
+       {% endfor %}       
+       {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Login" class="btn btn-success">
+        <a href="{% url 'registration'  %}" class="btn btn-secondary">Signup</a>
+    </form>
+   </div>
+</div>
+
+{% endblock %}

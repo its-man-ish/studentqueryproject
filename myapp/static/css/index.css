@@ -1,0 +1,16 @@
+
+  .header h1{
+      font-size: 60px;
+  }
+
+ 
+  .container {
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    height: 30%;
+    
+   
+    top: 10%;
+  }
+  
