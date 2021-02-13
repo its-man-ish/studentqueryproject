@@ -3,37 +3,55 @@
 {% block csslink %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
+
 {% block content %}
 
-<div class="conatiner">
-    <div class="model">
-        <div class="header">
-            <h1>MySchool</h1>
-            <p>School chale hum...</p>
-         </div>
-         </div>
-         <a class="btn btn-secondary" href="{% url 'registration'  %}" >Signup</a>
-         <a class="btn btn-success" href="{% url 'login'  %}" >Login</a>
-    </div>
    <div class="card-body">
        {% if queries %}
-       <h3 class="mt-2">STUDENT QUERIES</h3>
-
+       
            {% for query in queries %}
            <div class="card">
-            <div class="card-header bg-secondary text-light">
-              by {{query.name}}
+            <div class="card-header">
+      
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                by {{query.name}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edit' query.id  %}">Edit</a></li>
+                  <li>
+                     <form action="{% url 'delete' query.id  %}" method="post" class="dropdown-item">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" name="" id="" class="btn btn-danger sm"> 
+                    </form>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="card-body">
+            <div class="card-body  ">
+
+              <div class="container" style="width: 90%;">
+               
+                <h4> by {{query.name}}</h4>
+               </div>
+              
+
+             <div class="container" style="width: 90%;">
               <p> {{query.querry|safe}}</p>
+             </div>
+            
             </div>
-            <form action="{% url 'delete' query.id  %}" method="post">
-              {% csrf_token %}
-              <input type="submit" class="btn btn-danger" value="Delete" name="" id="">
-            </form>
+           
           </div>
           <hr>
            {% endfor %}
+        
+        {% else %}
+        <div class="alert alert-primary" role="alert">
+          No Record found
+        </div>
+
 
        {% endif %}
    </div>

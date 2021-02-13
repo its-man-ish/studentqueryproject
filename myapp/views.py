@@ -87,6 +87,20 @@ def StudentQuerry(request):
             })
     else:
         return HttpResponseRedirect('/login/')
+def edit_query(request,id):
+    if request.user.is_authenticated:
+        if request.method =='POST':
+            pi = StudentModel.objects.get(pk=id)
+            fm = QuerryForm(request.POST,instance=pi)
+            if fm.is_valid():
+                fm.save()
+        else:
+            pi = StudentModel.objects.get(pk=id)
+            fm = QuerryForm(instance=pi)
+        return render(request,'myapp/update.html',{'form':fm})
+    else:
+        return HttpResponseRedirect('/login/')
+       
 
 def delete_Query(request,id):
     if request.user.is_authenticated:
