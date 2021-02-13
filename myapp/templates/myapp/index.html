@@ -25,7 +25,7 @@
               by {{query.name}}
             </div>
             <div class="card-body">
-              <p> {{query.querry}}</p>
+              <p> {{query.querry|safe}}</p>
             </div>
             <form action="{% url 'delete' query.id  %}" method="post">
               {% csrf_token %}
