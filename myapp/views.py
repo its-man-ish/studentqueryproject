@@ -15,6 +15,7 @@ def StudentRegistration(request):
     if request.method == 'POST':
         fm = StudentRegistrationForm(request.POST)
         if fm.is_valid():
+            
             fm.save()
             messages.success(request,'Student Registered Successfully!!!')
     else:
@@ -34,35 +35,28 @@ def StudentLogin(request):
                  if user is not None:
                      login(request,user)
                      messages.success(request,'Logged in successfully !!')
-                     return HttpResponseRedirect('/profile/')
+                     return HttpResponseRedirect('/dashboard/')
         else:
             fm = AuthenticationForm()
         return render(request,'myapp/login.html',{'form':fm,})
     else:
         messages.info(request,'logout in order to login with different aaccount.')
-        return HttpResponseRedirect('/profile/')
-        
-def StudentProfile(request):
+        return HttpResponseRedirect('/dashboard/')
+
+def dashboard(request):
     if request.user.is_authenticated:
-        if request.method =='POST':
-           if request.user.is_superuser == True:
-               fm = AdminProfileForm(request.POST, instance=request.user)
-           else:
-               fm = StudentProfileForm(request.POST, instance=request.user)
-        
-           if fm.is_valid():
-               messages.success(request,'Successfully updated') 
-        else:
-            if request.user.is_superuser == True:
-                fm = AdminProfileForm(instance=request.user)
-            else:
-                fm = StudentProfileForm(instance=request.user)
-        return render(request,'myapp/profile.html',{
-            'name':request.user,
-            'form':fm,
+        posts=StudentModel.objects.all()
+        user = request.user
+        fname = user.get_full_name()
+       
+        return render(request,'myapp/dashboard.html',{
+            'posts':posts,
+            'name':user,
+            'fname':fname,
         })
     else:
-        return HttpResponseRedirect('/login/')
+        HttpResponseRedirect('/login/')
+        
 
 
 #logout
@@ -77,7 +71,7 @@ def StudentQuerry(request):
              fm = QuerryForm(request.POST)
              if fm.is_valid():
                 fm.save()
-                messages.success(request,'Your Querry has sent successfuly')
+                messages.success(request,'Post Published Successfuly')
                 fm = QuerryForm()
         else:
             fm = QuerryForm()

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'myapp',
     'ckeditor',
+    'ckeditor_uploader',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -54,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Student.urls'
+
+
 
 TEMPLATES = [
     {
@@ -123,3 +126,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ STATIC_DIR,]
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        
+        
+        'toolbar': 'Standard',
+        'height': '100%',
+        'width': '100%',
+    },
+
+   
+}

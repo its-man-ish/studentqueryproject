@@ -7,7 +7,7 @@ class StudentRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username','email',]
+        fields = ['username','email','first_name','last_name']
         labels = {
             'username':'Enter Username',
             'email':'Enter Email',
@@ -18,12 +18,13 @@ class QuerryForm(forms.ModelForm):
 
     class Meta:
         model = StudentModel
-        fields = ['name','email','querry']
+        fields = ['title','querry',]
         labels = {
-            'name':'ENTER YOUR NAME',
-            'email':'ENTER YOUR EMAIL',
-            'querry':'WHATS YOUR PROBLEM BRO!!! ?',
+            'title':'ENTER POST TITLE',
+          
+            'querry':'WRITE POST',
         }
+       
         
 class StudentProfileForm(UserChangeForm):
     password = None

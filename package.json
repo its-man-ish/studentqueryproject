@@ -1,0 +1,26 @@
+{
+  "name": "studentqueryproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^10.2.4",
+    "ckeditor4": "^4.16.0",
+    "ckeditor4-plugin-spreadsheet": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-man-ish/studentqueryproject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/its-man-ish/studentqueryproject/issues"
+  },
+  "homepage": "https://github.com/its-man-ish/studentqueryproject#readme"
+}

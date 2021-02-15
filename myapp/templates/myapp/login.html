@@ -1,12 +1,12 @@
 {% extends 'myapp/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="conatiner">
-    <div class="card-header text-center">
-        <h3>Login Form</h3>
+<div class="conatiner border-2">
+    <div class="card-header text-center text-light">
+       
         <p>Admin: naruto <br> Passward: manish</p>
     </div>
-   <div class="card-body">
+   <div class="card-body text-light active border">
        {% if messages %}
        {% for message in messages %}
 
@@ -16,9 +16,12 @@
 
        {% endfor %}       
        {% endif %}
+       <h3>Login Form</h3>
+       <hr>
     <form action="" method="post">
         {% csrf_token %}
         {{form|crispy}}
+        <hr>
         <input type="submit" value="Login" class="btn btn-success">
         <a href="{% url 'registration'  %}" class="btn btn-secondary">Signup</a>
     </form>

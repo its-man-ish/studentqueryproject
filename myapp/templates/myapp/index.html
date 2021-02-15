@@ -1,50 +1,59 @@
 {% extends 'myapp/base.html' %}
 {% load static %}
-{% block csslink %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{% endblock %}
+
 
 {% block content %}
 
-   <div class="card-body">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4 text-warning">MySChool Blogs</h1>
+    <p class="text-light">Everyone In Our School Has After School Activities. Mine Is Going Home. David Levithan!</p>
+    <a class="navbar-brand text-light active border m-1 p-1 rounded" aria-current="page" href="{% url 'querry'  %}"><i class="fa fa-plus" aria-hidden="true"></i>  Craete Post</a>
+    <a class="navbar-brand text-light active border m-1 p-1 rounded" aria-current="page" href="{% url 'dashboard'  %}"><i class="fa fa-bar-chart" aria-hidden="true"></i>  Dashboard</a>
+
+    <hr style="color: white; border:2px solid">
+
+  </div>
+</div>
+
        {% if queries %}
        
            {% for query in queries %}
-           <div class="card">
-            <div class="card-header">
-      
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                by {{query.name}}
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="{% url 'edit' query.id  %}">Edit</a></li>
-                  <li>
-                     <form action="{% url 'delete' query.id  %}" method="post" class="dropdown-item">
-                    {% csrf_token %}
-                    <input type="submit" value="Delete" name="" id="" class="btn btn-danger sm"> 
-                    </form>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card-body  ">
-
-              <div class="container" style="width: 90%;">
-               
-                <h4> by {{query.name}}</h4>
-               </div>
-              
-
-             <div class="container" style="width: 90%;">
-              <p> {{query.querry|safe}}</p>
-             </div>
-            
-            </div>
            
-          </div>
-          <hr>
+            <div class="card">
+              <div class="card-body bg-warning rounded-lg border mb-2">
+
+              <div class="row">
+
+                <div class="col">
+                 
+                  <hr>
+                  <h4>{{query.title}}</h4>
+                  <hr>
+                  <div class="container">
+                    <p> {{query.querry|safe}}</p>
+                   </div>
+                   <hr>
+                   <form action="{% url 'delete' query.id  %}" method="POST">
+                     {% csrf_token %}
+                     <a class="btn btn-primary"  href="{% url 'querry'  %}"><i class="fa fa-plus" aria-hidden="true"></i>   Craete New Post</a>
+                     <a href="{% url 'edit' query.id  %}" class="btn btn-secondary"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                     <input type="submit" value="delete" class="btn btn-danger" >
+                    </form>
+                    
+                   
+                   
+                </div>
+                
+      
+
+                </div>
+
+              </div>
+
+            </div>
+             
+        
            {% endfor %}
         
         {% else %}
@@ -54,8 +63,7 @@
 
 
        {% endif %}
-   </div>
-    
-</div>
+   
+
 
 {% endblock %}
