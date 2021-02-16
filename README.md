@@ -1,1 +1,1 @@
-# studentqueryproject
+/home/itsmanish/studentqueryproject
