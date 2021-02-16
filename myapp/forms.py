@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import StudentModel
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 class StudentRegistrationForm(UserCreationForm):
 
@@ -24,6 +25,7 @@ class QuerryForm(forms.ModelForm):
           
             'querry':'WRITE POST',
         }
+       
        
         
 class StudentProfileForm(UserChangeForm):

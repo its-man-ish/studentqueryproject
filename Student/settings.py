@@ -135,9 +135,8 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
         
-        
+        'skin':'moono',
         'toolbar': 'Standard',
-        'height': '100%',
         'width': '100%',
     },
 

@@ -55,7 +55,7 @@ def dashboard(request):
             'fname':fname,
         })
     else:
-        HttpResponseRedirect('/login/')
+        return HttpResponseRedirect('/login/')
         
 
 
